@@ -10,7 +10,7 @@ import java.util.List;
  * Just a registered user
  * @author Bulat Bilalov
  * @version 1.0
- * @see com.bulat.jobboard.model.BaseEntity
+ * @see ru.itis.conferences.models.BaseEntity
  * @see db.changelog/db.changelog-1.0.xml
  */
 @EqualsAndHashCode(callSuper = false)
