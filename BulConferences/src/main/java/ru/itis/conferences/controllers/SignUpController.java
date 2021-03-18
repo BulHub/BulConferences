@@ -73,7 +73,7 @@ public class SignUpController {
         }else{
             Attributes.addErrorAttributes(model, String.valueOf(error));
         }
-        return "/signUp";
+        return "/signIn";
     }
 
     /**

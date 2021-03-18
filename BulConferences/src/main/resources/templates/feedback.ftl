@@ -194,4 +194,4 @@
 
 </#macro>
 
-<@main name="Contact" nameCSS="developers.css"/>
+<@main name="Contact &mdash; Website by BulConferences" nameCSS="developers.css"/>

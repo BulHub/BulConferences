@@ -1,6 +1,8 @@
 package ru.itis.conferences.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +34,8 @@ public class MainController {
     }
 
     @GetMapping("/developers")
-    public String getDevelopers() {
+    public String getDevelopers(HttpSession session) {
+        pushSession(session);
         return "developers";
     }
 
@@ -60,7 +63,8 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String getHome() {
+    public String getHome(HttpSession session) {
+        pushSession(session);
         return "home";
     }
 
@@ -82,5 +86,12 @@ public class MainController {
     @GetMapping("/admissions")
     public String getAdmissions(){
         return "admissions";
+    }
+
+    private void pushSession(HttpSession session){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByEmail(auth.getName()).orElse(new User());
+        session.setAttribute("nickname", user.getNickname());
+        session.setAttribute("email", user.getEmail());
     }
 }

@@ -167,4 +167,4 @@
 
 </#macro>
 
-<@main name="Change password" nameCSS="developers.css"/>
+<@main name="Change password &mdash; Website by BulConferences" nameCSS="developers.css"/>

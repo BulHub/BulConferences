@@ -207,6 +207,6 @@
 
 </#macro>
 
-<@main name="Academics &mdash; Website by BulSchool" nameCSS="developers.css"/>
+<@main name="Conferences &mdash; Website by BulConferences" nameCSS="developers.css"/>
 
 

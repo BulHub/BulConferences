@@ -469,4 +469,4 @@
 <script src="${rc.getContextPath()}/js/main.js"></script>
 </#macro>
 
-<@main name="Academics &mdash; Website by BulConferences" nameCSS="developers.css"/>
+<@main name="Home &mdash; Website by BulConferences" nameCSS="developers.css"/>

@@ -161,4 +161,4 @@
 <script src="${rc.getContextPath()}/js/main.js"></script>
 </#macro>
 
-<@main name="Academics &mdash; Website by BulSchool" nameCSS="developers.css"/>
+<@main name="Admissions &mdash; Website by BulConferences" nameCSS="developers.css"/>
