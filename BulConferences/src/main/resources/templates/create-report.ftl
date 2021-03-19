@@ -69,27 +69,29 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="conference">Conference</label>
-                        <select id="conference" name="conference" class="form-control form-control-lg">
-                            <option value="1">Option one</option>
-                            <option value="2">Option two</option>
+                        <select id="conference1" name="conference1" class="form-control form-control-lg">
+                            <#list conferences as conference>
+                                <option value="${conference.name}">${conference.name}</option>
+                            </#list>
                         </select>
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="audience">Audience</label>
-                        <select id="audience" name="audience" class="form-control form-control-lg">
-                            <option value="1">Option one</option>
-                            <option value="2">Option two</option>
+                        <select id="audience1" name="audience1" class="form-control form-control-lg">
+                            <#list audiences as audience>
+                                <option value="${audience.number}">${audience.number}</option>
+                            </#list>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="audience">Start time</label>
-                        <p><input type="datetime-local" name="created"></p>
+                        <p><input type="datetime-local" name="start_date1" id="start_date1"></p>
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="audience">Finish time</label>
-                        <p><input type="datetime-local" name="created"></p>
+                        <p><input type="datetime-local" name="finish_date1" id="finish_date1"></p>
                     </div>
                 </div>
                 <div class="row">
