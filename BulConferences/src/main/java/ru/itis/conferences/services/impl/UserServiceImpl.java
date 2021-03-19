@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import ru.itis.conferences.dto.PasswordDto;
+import ru.itis.conferences.models.Report;
 import ru.itis.conferences.models.Role;
 import ru.itis.conferences.models.Status;
 import ru.itis.conferences.models.User;
@@ -14,6 +15,7 @@ import ru.itis.conferences.services.UserService;
 import ru.itis.conferences.utils.Attributes;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
