@@ -60,8 +60,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
-                                                                                      href="${rc.getContextPath()}/changePassword">Settings </a><a
-                                    class="dropdown-item"
+                                                                                      href="${rc.getContextPath()}/changePassword">Settings </a>
+                            <a class="dropdown-item"
+                               role="presentation"
+                               href="${rc.getContextPath()}/create/report">Create </a>
+                            <a class="dropdown-item"
                                     role="presentation"
                                     href="${rc.getContextPath()}/logout">Logout </a>
                         </div>
