@@ -1,0 +1,94 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.0.8" author="bulat.bilalov">
+        <createTable tableName="audience">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="number" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+    
+    <changeSet id="1.0.9" author="bulat.bilalov">
+        <insert tableName="audience">
+            <column name="id" value="100"/>
+            <column name="number" value="666"/>
+        </insert>
+
+        <insert tableName="audience">
+            <column name="id" value="101"/>
+            <column name="number" value="777"/>
+        </insert>
+
+        <insert tableName="audience">
+            <column name="id" value="102"/>
+            <column name="number" value="555"/>
+        </insert>
+
+        <insert tableName="audience">
+            <column name="id" value="103"/>
+            <column name="number" value="333"/>
+        </insert>
+
+        <insert tableName="audience">
+            <column name="id" value="104"/>
+            <column name="number" value="111"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.1.0" author="bulat.bilalov">
+        <createTable tableName="conference">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="description" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+    
+    <changeSet id="1.1.1" author="bulat.bilalov">
+        <insert tableName="conference">
+            <column name="id" value="100"/>
+            <column name="name" value="Conference_1"/>
+            <column name="description" value="I don't know that I need to write here!"/>
+        </insert>
+
+        <insert tableName="conference">
+            <column name="id" value="101"/>
+            <column name="name" value="Conference_2"/>
+            <column name="description" value="I don't know that I need to write here!"/>
+        </insert>
+
+        <insert tableName="conference">
+            <column name="id" value="102"/>
+            <column name="name" value="Conference_3"/>
+            <column name="description" value="I don't know that I need to write here!"/>
+        </insert>
+
+        <insert tableName="conference">
+            <column name="id" value="103"/>
+            <column name="name" value="Conference_4"/>
+            <column name="description" value="I don't know that I need to write here!"/>
+        </insert>
+
+        <insert tableName="conference">
+            <column name="id" value="104"/>
+            <column name="name" value="Conference_5"/>
+            <column name="description" value="I don't know that I need to write here!"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
