@@ -31,7 +31,7 @@
 
     <body>
     <nav class="navbar navbar-light navbar-expand-md custom-header">
-        <div class="container-fluid"><a class="navbar-brand" href="#">Bul<span>School</span> </a>
+        <div class="container-fluid"><a class="navbar-brand" href="#">Bul<span>Conferences</span> </a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse"><span class="sr-only">Toggle navigation</span><span
                         class="navbar-toggler-icon"></span></button>
             <div
@@ -49,8 +49,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
-                                                                                      href="${rc.getContextPath()}/home">Back </a><a
-                                    class="dropdown-item"
+                                                                                      href="${rc.getContextPath()}/home">Back </a>
+                            <a class="dropdown-item"
+                               role="presentation"
+                               href="${rc.getContextPath()}/create/report">Create </a>
+                            <a class="dropdown-item"
                                     role="presentation"
                                     href="${rc.getContextPath()}/logout">Logout </a>
                         </div>
