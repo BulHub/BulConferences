@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void signUp(User user, HttpSession session) {
-        Optional<Role> roleUser = roleService.findByName("ROLE_USER");
+        Optional<Role> roleUser = roleService.findByName("ROLE_LISTENER");
         roleUser.ifPresent(role -> user.setRoles(Collections.singletonList(role)));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setStatus(Status.INACTIVE);
