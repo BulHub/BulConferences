@@ -19,6 +19,6 @@ public class Audience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number")
+    @Column(name = "number", unique = true)
     private Long number;
 }
