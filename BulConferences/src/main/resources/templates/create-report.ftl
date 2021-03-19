@@ -105,20 +105,11 @@
 
     <script>
         function validateForm4() {
-            let password1 = document.getElementById('oldPassword');
-            let password2 = document.getElementById('newPassword');
-            let password3 = document.getElementById('newRePassword');
+            let name = document.getElementById('name');
             let error = '';
-            if (password1.value.length < 6 || password1.value.length > 30 ){
-                error+='Old password must be between 6 and 30 characters! \n';
+            if (name.value.length < 6 || name.value.length > 30 ){
+                error+='Name must be between 6 and 30 characters! \n';
             }
-            if (password2.value.length < 6 || password2.value.length > 30){
-                error+='New password must be between 6 and 30 characters! \n';
-            }
-            if (password3.value.length < 6 || password3.value.length > 30){
-                error+='New re-password must be between 6 and 30 characters! \n';
-            }
-
             if (error !== '') {
                 swal("Oops", error, "error");
                 return false;
