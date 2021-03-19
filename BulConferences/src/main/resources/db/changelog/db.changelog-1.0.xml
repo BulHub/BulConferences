@@ -37,7 +37,7 @@
             <column name="status" value="ACTIVE"/>
             <column name="nickname" value="General_Admin"/>
             <column name="email" value="admin@gmail.com"/>
-            <column name="password" value="12341234"/>
+            <column name="password" value="$2y$12$IFqdLpBubFppizVU8FtpQupt1Lgdby6550Pf1jqVlA6zzMsRdektm"/>
         </insert>
 
         <insert tableName="users">
@@ -47,7 +47,7 @@
             <column name="status" value="ACTIVE"/>
             <column name="nickname" value="General_Presenter"/>
             <column name="email" value="presenter@gmail.com"/>
-            <column name="password" value="12341234"/>
+            <column name="password" value="$2y$12$IFqdLpBubFppizVU8FtpQupt1Lgdby6550Pf1jqVlA6zzMsRdektm"/>
         </insert>
 
         <insert tableName="users">
@@ -57,7 +57,7 @@
             <column name="status" value="ACTIVE"/>
             <column name="nickname" value="General_Listener"/>
             <column name="email" value="listener@gmail.com"/>
-            <column name="password" value="12341234"/>
+            <column name="password" value="$2y$12$IFqdLpBubFppizVU8FtpQupt1Lgdby6550Pf1jqVlA6zzMsRdektm"/>
         </insert>
     </changeSet>
 
