@@ -70,8 +70,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 form-group">
-                        <label for="message">Message</label>
-                        <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
+                        <label for="message">Description</label>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -87,20 +87,15 @@
 
     <script>
         function validateForm4() {
-            let password1 = document.getElementById('oldPassword');
-            let password2 = document.getElementById('newPassword');
-            let password3 = document.getElementById('newRePassword');
+            let name = document.getElementById('name');
+            let description = document.getElementById('description');
             let error = '';
-            if (password1.value.length < 6 || password1.value.length > 30 ){
-                error+='Old password must be between 6 and 30 characters! \n';
+            if (name.value.length < 6 || name.value.length > 30 ){
+                error+='Name must be between 6 and 30 characters! \n';
             }
-            if (password2.value.length < 6 || password2.value.length > 30){
-                error+='New password must be between 6 and 30 characters! \n';
+            if (description.value.length < 30 || description.value.length > 500){
+                error+='Description must be between 30 and 500 characters! \n';
             }
-            if (password3.value.length < 6 || password3.value.length > 30){
-                error+='New re-password must be between 6 and 30 characters! \n';
-            }
-
             if (error !== '') {
                 swal("Oops", error, "error");
                 return false;
