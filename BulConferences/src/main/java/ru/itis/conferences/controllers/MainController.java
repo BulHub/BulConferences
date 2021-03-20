@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.itis.conferences.models.Feedback;
 import ru.itis.conferences.models.User;
-import ru.itis.conferences.security.details.UserDetailsImpl;
 import ru.itis.conferences.services.FeedbackService;
+import ru.itis.conferences.services.ReportService;
 import ru.itis.conferences.services.TelegramService;
 import ru.itis.conferences.services.UserService;
 import ru.itis.conferences.utils.Attributes;
@@ -24,13 +24,21 @@ public class MainController {
     private final FeedbackService feedbackService;
     private final UserService userService;
     private final TelegramService telegramService;
+    private final ReportService reportService;
 
     @Autowired
     public MainController(FeedbackService feedbackService, UserService userService,
-                          TelegramService telegramService) {
+                          TelegramService telegramService, ReportService reportService) {
         this.feedbackService = feedbackService;
         this.userService = userService;
         this.telegramService = telegramService;
+        this.reportService = reportService;
+    }
+
+    @GetMapping("/schedule")
+    public String getSchedule(ModelMap map){
+        map.put("schedules", reportService.findAll());
+        return "schedule";
     }
 
     @GetMapping("/developers")
