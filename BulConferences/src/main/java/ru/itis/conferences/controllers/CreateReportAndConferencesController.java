@@ -39,6 +39,7 @@ public class CreateReportAndConferencesController {
     }
 
     @PostMapping("/create/report")
+    //FIXME: НЕ СОХРАНЯЕТ В БД!!!
     public String createReports(Report report,
                                 @RequestParam("conference1") String conference,
                                 @RequestParam("audience1") String audience,
