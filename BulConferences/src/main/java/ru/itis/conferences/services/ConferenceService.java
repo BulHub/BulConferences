@@ -1,6 +1,7 @@
 package ru.itis.conferences.services;
 
 import org.springframework.stereotype.Service;
+import ru.itis.conferences.dto.ConferenceDto;
 import ru.itis.conferences.models.Conference;
 
 import java.util.List;
@@ -15,4 +16,10 @@ public interface ConferenceService {
     void delete(Conference entity);
 
     void add(Conference entity);
+
+    boolean signUpForConference(String name);
+
+    List<ConferenceDto> getAllConferencesWhereThisUserIsRegistered();
+
+    List<ConferenceDto> getAllConferencesWhereThisUserIsNotRegistered();
 }
