@@ -22,6 +22,7 @@
                 swal('${title}', '${message}', '${category}');
                 </#if>
             }
+
             window.onload = funOnLoad;
         </script>
 
@@ -44,10 +45,12 @@
                                                                 href="${rc.getContextPath()}/schedule">Schedule</a></li>
                     <@security.authorize access="hasAnyAuthority('ROLE_LISTENER')">
                         <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                    href="${rc.getContextPath()}/conferences">Conferences</a></li>
+                                                                    href="${rc.getContextPath()}/conferences">Conferences</a>
+                        </li>
                     </@security.authorize>
                     <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/admissions">Admissions</a></li>
+                                                                href="${rc.getContextPath()}/admissions">Admissions</a>
+                    </li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/developers">Developers</a>
                     </li>
@@ -66,15 +69,17 @@
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
                                                                                       href="${rc.getContextPath()}/changePassword">Settings </a>
-                            <a class="dropdown-item"
-                               role="presentation"
-                               href="${rc.getContextPath()}/create/report">Create </a>
+                            <@security.authorize access="hasAnyAuthority('ROLE_PRESENTER')">
+                                <a class="dropdown-item"
+                                   role="presentation"
+                                   href="${rc.getContextPath()}/create/report">Create </a>
+                            </@security.authorize>
                             <a class="dropdown-item"
                                role="presentation"
                                href="${rc.getContextPath()}/admin/users">Admin page </a>
                             <a class="dropdown-item"
-                                    role="presentation"
-                                    href="${rc.getContextPath()}/logout">Logout </a>
+                               role="presentation"
+                               href="${rc.getContextPath()}/logout">Logout </a>
                         </div>
                     </li>
                 </ul>
