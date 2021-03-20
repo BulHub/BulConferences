@@ -1,3 +1,4 @@
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <#macro main name nameCSS>
     <!DOCTYPE html>
     <html lang="en">
@@ -21,6 +22,7 @@
                 swal('${title}', '${message}', '${category}');
                 </#if>
             }
+
             window.onload = funOnLoad;
         </script>
 
@@ -38,9 +40,11 @@
                     class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav links">
                     <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/create/report">Create report</a></li>
+                                                                href="${rc.getContextPath()}/create/report">Create
+                            report</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/create/conference">Create conference</a></li>
+                                                                href="${rc.getContextPath()}/create/conference">Create
+                            conference</a></li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
@@ -52,15 +56,17 @@
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
                                                                                       href="${rc.getContextPath()}/home">Back </a>
-                            <a class="dropdown-item"
-                               role="presentation"
-                               href="${rc.getContextPath()}/create/report">Create </a>
+                            <@security.authorize access="hasAnyAuthority('ROLE_PRESENTER')">
+                                <a class="dropdown-item"
+                                   role="presentation"
+                                   href="${rc.getContextPath()}/create/report">Create </a>
+                            </@security.authorize>
                             <a class="dropdown-item"
                                role="presentation"
                                href="${rc.getContextPath()}/admin/users">Admin page </a>
                             <a class="dropdown-item"
-                                    role="presentation"
-                                    href="${rc.getContextPath()}/logout">Logout </a>
+                               role="presentation"
+                               href="${rc.getContextPath()}/logout">Logout </a>
                         </div>
                     </li>
                 </ul>
