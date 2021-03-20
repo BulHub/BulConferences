@@ -26,8 +26,6 @@
 
         <link rel="stylesheet" href="${rc.getContextPath()}/css/style.css">
 
-
-
     </head>
 
     <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -46,7 +44,7 @@
             <div class="container">
                 <div class="row align-items-end">
                     <div class="col-lg-7">
-                        <h2 class="mb-0">Courses</h2>
+                        <h2 class="mb-0">Conferences</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                     </div>
                 </div>
@@ -58,104 +56,47 @@
             <div class="container">
                 <a href="${rc.getContextPath()}/home">Home</a>
                 <span class="mx-3 icon-keyboard_arrow_right"></span>
-                <span class="current">Courses</span>
+                <span class="current">Conferences</span>
             </div>
         </div>
 
         <div class="site-section">
             <div class="container">
                 <div class="row">
+
+                    <#list conferencesDtoNotReg as confernceDto>
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="course-1-item">
                             <figure class="thumnail">
-                                <a href="${rc.getContextPath()}/course/java"><img src="${rc.getContextPath()}/images/course_1.jpg" alt="Image" class="img-fluid"></a>
+                                <a href="${rc.getContextPath()}/conference/${confernceDto.name}"><img src="${rc.getContextPath()}/images/course_2.jpg" id="image" alt="Image" class="img-fluid"></a>
                                 <div class="price">$99.00</div>
-                                <div class="category"><h3>Java</h3></div>
+                                <div class="category"><h3>Conference</h3></div>
                             </figure>
                             <div class="course-1-content pb-4">
-                                <h2>Java Junior Developer</h2>
-                                <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                                <p><a href="${rc.getContextPath()}/course/java" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
+                                <h2>${confernceDto.name}</h2>
+                                <p class="desc mb-4">${confernceDto.description}</p>
+                                <p><a href="${rc.getContextPath()}/conference/${confernceDto.name}" class="btn btn-primary rounded-0 px-4">Enroll In This Conference</a></p>
                             </div>
                         </div>
                     </div>
+                    </#list>
 
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="course-1-item">
-                            <figure class="thumnail">
-                                <a href="${rc.getContextPath()}/course/python"><img src="${rc.getContextPath()}/images/course_2.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="price">$99.00</div>
-                                <div class="category"><h3>Python</h3></div>
-                            </figure>
-                            <div class="course-1-content pb-4">
-                                <h2>Python Junior Developer</h2>
-                                <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                                <p><a href="${rc.getContextPath()}/course/python" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
+                    <#list conferencesDtoReg as confernceDto>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-1-item">
+                                <figure class="thumnail">
+                                    <a href="#"><img src="${rc.getContextPath()}/images/course_2.jpg" id="image" alt="Image" class="img-fluid"></a>
+                                    <div class="price">$99.00</div>
+                                    <div class="category"><h3>Conference</h3></div>
+                                </figure>
+                                <div class="course-1-content pb-4">
+                                    <h2>${confernceDto.name}</h2>
+                                    <p class="desc mb-4">${confernceDto.description}</p>
+                                    <p><a href="#" class="btn btn-dark rounded-0 px-4">Are you registered</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="course-1-item">
-                            <figure class="thumnail">
-                                <a href="${rc.getContextPath()}/course/net"><img src="${rc.getContextPath()}/images/course_3.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="price">$99.00</div>
-                                <div class="category"><h3>.NET</h3></div>
-                            </figure>
-                            <div class="course-1-content pb-4">
-                                <h2>.NET Junior Developer</h2>
-                                <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                                <p><a href="${rc.getContextPath()}/course/net" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="course-1-item">
-                            <figure class="thumnail">
-                                <a href="${rc.getContextPath()}/course/iOs"><img src="${rc.getContextPath()}/images/course_4.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="price">$99.00</div>
-                                <div class="category"><h3>iOS</h3></div>
-                            </figure>
-                            <div class="course-1-content pb-4">
-                                <h2>iOS Junior Developer</h2>
-                                <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                                <p><a href="${rc.getContextPath()}/course/iOs" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="course-1-item">
-                            <figure class="thumnail">
-                                <a href="${rc.getContextPath()}/course/database"><img src="${rc.getContextPath()}/images/course_5.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="price">$99.00</div>
-                                <div class="category"><h3>Database</h3></div>
-                            </figure>
-                            <div class="course-1-content pb-4">
-                                <h2>Database Junior Developer</h2>
-                                <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                                <p><a href="${rc.getContextPath()}/course/database" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="course-1-item">
-                            <figure class="thumnail">
-                                <a href="${rc.getContextPath()}/course/php"><img src="${rc.getContextPath()}/images/course_6.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="price">$99.00</div>
-                                <div class="category"><h3>PHP</h3></div>
-                            </figure>
-                            <div class="course-1-content pb-4">
-                                <h2>PHP Junior Developer</h2>
-                                <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                                <p><a href="${rc.getContextPath()}/course/php" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                            </div>
-                        </div>
-                    </div>
-
+                    </#list>
                 </div>
             </div>
         </div>
