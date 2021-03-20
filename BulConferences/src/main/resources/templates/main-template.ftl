@@ -40,6 +40,8 @@
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/home">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="${rc.getContextPath()}/schedule">Schedule</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/courses">Courses<a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/admissions">Admissions<a></li>
@@ -64,6 +66,9 @@
                             <a class="dropdown-item"
                                role="presentation"
                                href="${rc.getContextPath()}/create/report">Create </a>
+                            <a class="dropdown-item"
+                               role="presentation"
+                               href="${rc.getContextPath()}/admin/users">Admin page </a>
                             <a class="dropdown-item"
                                     role="presentation"
                                     href="${rc.getContextPath()}/logout">Logout </a>
