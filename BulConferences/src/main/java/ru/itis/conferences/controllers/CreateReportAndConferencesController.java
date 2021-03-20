@@ -1,6 +1,7 @@
 package ru.itis.conferences.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_PRESENTER')")
 public class CreateReportAndConferencesController {
 
     private final ConferenceService conferenceService;
