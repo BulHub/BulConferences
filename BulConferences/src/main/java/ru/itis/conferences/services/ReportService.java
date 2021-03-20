@@ -2,6 +2,7 @@ package ru.itis.conferences.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+import ru.itis.conferences.dto.ReportDto;
 import ru.itis.conferences.models.Audience;
 import ru.itis.conferences.models.Report;
 
