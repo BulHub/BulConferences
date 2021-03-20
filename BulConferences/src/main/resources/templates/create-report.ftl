@@ -108,6 +108,8 @@
     <script>
         function validateForm4() {
             let name = document.getElementById('name');
+            let start = document.getElementById('start_date1');
+            let finish = document.getElementById('finish_date1');
             let error = '';
             if (name.value.length < 6 || name.value.length > 30 ){
                 error+='Name must be between 6 and 30 characters! \n';
