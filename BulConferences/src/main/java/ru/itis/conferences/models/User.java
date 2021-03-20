@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -14,7 +15,6 @@ import java.util.Set;
  * @see ru.itis.conferences.models.BaseEntity
  * @see db.changelog/db.changelog-1.0.xml
  */
-@EqualsAndHashCode(callSuper = false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -123,5 +123,18 @@ public class User extends BaseEntity implements Comparable<User>{
     @Override
     public int compareTo(User o) {
         return email.compareTo(o.getEmail());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return email.equals(user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
 }
