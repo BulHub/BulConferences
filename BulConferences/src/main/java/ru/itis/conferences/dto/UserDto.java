@@ -16,7 +16,6 @@ public class UserDto {
     private Long id;
     private String nickname;
     private String email;
-    private String password;
 
     public User toUser() {
         User user = new User();
