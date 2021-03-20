@@ -1,3 +1,4 @@
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <#macro main name nameCSS>
     <!DOCTYPE html>
     <html lang="en">
@@ -41,10 +42,12 @@
                                                                 href="${rc.getContextPath()}/home">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/schedule">Schedule</a></li>
+                    <@security.authorize access="hasAnyAuthority('ROLE_LISTENER')">
+                        <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                    href="${rc.getContextPath()}/conferences">Conferences</a></li>
+                    </@security.authorize>
                     <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/courses">Courses<a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/admissions">Admissions<a></li>
+                                                                href="${rc.getContextPath()}/admissions">Admissions</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/developers">Developers</a>
                     </li>
