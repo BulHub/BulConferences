@@ -54,6 +54,9 @@
                                role="presentation"
                                href="${rc.getContextPath()}/create/report">Create </a>
                             <a class="dropdown-item"
+                               role="presentation"
+                               href="${rc.getContextPath()}/admin/users">Admin page </a>
+                            <a class="dropdown-item"
                                     role="presentation"
                                     href="${rc.getContextPath()}/logout">Logout </a>
                         </div>
