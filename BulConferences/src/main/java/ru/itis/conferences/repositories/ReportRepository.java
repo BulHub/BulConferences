@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
     Optional<Report> findByName(String name);
-    List<Report> findAllByAudience(Audience audience);
+    List<Report> findByAudience(Audience audience);
 }
