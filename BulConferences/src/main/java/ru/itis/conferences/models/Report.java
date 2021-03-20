@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +33,11 @@ public class Report {
     @JoinColumn(name = "audience_id")
     private Audience audience;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDateTime startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "finish_date")
-    private Date finishDate;
+    private LocalDateTime finishDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "report_user",
