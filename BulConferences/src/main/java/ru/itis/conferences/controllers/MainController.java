@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.itis.conferences.models.Feedback;
+import ru.itis.conferences.models.Report;
 import ru.itis.conferences.models.User;
 import ru.itis.conferences.services.FeedbackService;
 import ru.itis.conferences.services.ReportService;
@@ -16,7 +17,10 @@ import ru.itis.conferences.services.UserService;
 import ru.itis.conferences.utils.Attributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -35,9 +39,18 @@ public class MainController {
         this.reportService = reportService;
     }
 
+    @GetMapping("/")
+    public String getGeneralPage(){
+        return "redirect:/home";
+    }
+
     @GetMapping("/schedule")
     public String getSchedule(ModelMap map){
-        map.put("schedules", reportService.findAll());
+        List<Report> reports = reportService.findAll();
+        List<Report> sortedReportsByAudience = reports.stream()
+                .sorted(Comparator.comparing(report -> report.getAudience().getNumber()))
+                .collect(Collectors.toList());
+        map.put("schedules", sortedReportsByAudience);
         return "schedule";
     }
 
@@ -74,11 +87,6 @@ public class MainController {
     public String getHome(HttpSession session) {
         pushSession(session);
         return "home";
-    }
-
-    @GetMapping("/courses")
-    public String getCourses() {
-        return "courses";
     }
 
     @GetMapping("/course-single")
