@@ -11,15 +11,11 @@ import ru.itis.conferences.models.Status;
 import ru.itis.conferences.models.User;
 import ru.itis.conferences.repositories.UserRepository;
 import ru.itis.conferences.services.RoleService;
-import ru.itis.conferences.services.UserService;
 import ru.itis.conferences.utils.Attributes;
-
+import ru.itis.conferences.services.UserService;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -100,5 +96,10 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
             Attributes.addSuccessAttributes(model, "Success!");
         }
+    }
+
+    @Override
+    public List<User> findByRoles(Role role){
+        return userRepository.findByRoles(role);
     }
 }
