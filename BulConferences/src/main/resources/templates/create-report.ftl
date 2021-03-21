@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <form id="form4" autocomplete="off" method="post">
+    <form id="form4" autocomplete="off" method="post" action="/create/report">
         <div class="site-section">
             <div class="container">
                 <div class="row">

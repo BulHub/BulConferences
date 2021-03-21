@@ -72,7 +72,7 @@
                             <@security.authorize access="hasAnyAuthority('ROLE_PRESENTER')">
                                 <a class="dropdown-item"
                                    role="presentation"
-                                   href="${rc.getContextPath()}/create/report">Create </a>
+                                   href="${rc.getContextPath()}/create/report">Presenter page </a>
                             </@security.authorize>
                             <a class="dropdown-item"
                                role="presentation"
