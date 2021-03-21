@@ -12,7 +12,8 @@ import java.util.List;
  * @version 1.0
  */
 @EqualsAndHashCode(callSuper = false)
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

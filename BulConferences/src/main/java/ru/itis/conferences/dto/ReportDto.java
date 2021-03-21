@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.conferences.models.Audience;
 import ru.itis.conferences.models.Report;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class ReportDto {
 
     private String name;
     private ConferenceDto conferenceDto;
+    private Audience audience;
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
 
@@ -23,6 +25,7 @@ public class ReportDto {
         return Report.builder()
                 .name(name)
                 .conference(conferenceDto.toConference())
+                .audience(audience)
                 .startDate(startDate)
                 .finishDate(finishDate)
                 .build();

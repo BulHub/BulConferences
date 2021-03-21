@@ -10,8 +10,9 @@ import ru.itis.conferences.models.Status;
 import ru.itis.conferences.models.User;
 import ru.itis.conferences.repositories.UserRepository;
 import ru.itis.conferences.services.RoleService;
-import ru.itis.conferences.utils.Attributes;
 import ru.itis.conferences.services.UserService;
+import ru.itis.conferences.utils.Attributes;
+
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -99,5 +100,43 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findByRoles(Role role){
         return userRepository.findByRoles(role);
+    }
+
+    @Override
+    public boolean createNewUserWithRole(User user, String role){
+        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        if (optionalUser.isPresent()){
+            return false;
+        }else{
+            user.setRoles(Collections.singletonList(roleService.findByName(role).get()));
+            user.setStatus(Status.ACTIVE);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setCreated(new Date());
+            user.setUpdated(new Date());
+            userRepository.save(user);
+            return true;
+        }
+    }
+
+    @Override
+    public void delete(User user){
+        userRepository.delete(user);
+    }
+
+    @Override
+    public boolean updateRole(String email, String role){
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        Optional<Role> optionalRole = roleService.findByName(role);
+        if (optionalRole.isPresent() && optionalUser.isPresent()){
+            User user = optionalUser.get();
+            Role newRole = optionalRole.get();
+            List<Role> arrayList = new ArrayList();
+            arrayList.add(newRole);
+            user.setRoles(arrayList);
+            userRepository.save(user);
+            return true;
+        }else{
+            return false;
+        }
     }
 }

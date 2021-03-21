@@ -6,6 +6,7 @@ import ru.itis.conferences.models.Role;
 import ru.itis.conferences.repositories.RoleRepository;
 import ru.itis.conferences.services.RoleService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +22,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role save(Role role) {
         return roleRepository.save(role);
+    }
+
+    @Override
+    public List<Role> findAll() {
+        return roleRepository.findAll();
     }
 
     @Override

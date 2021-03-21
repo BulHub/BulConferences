@@ -82,10 +82,10 @@
         </div>
     </div>
 
-    <form id="form4" autocomplete="off" method="post">
+    <form id="form4" autocomplete="off" method="post" action="/admin/users">
         <div class="site-section">
             <div class="container">
-                <h3>Promoted to Rapporteur:</h3>
+                <h3>Promoted to Presenter:</h3>
                 <p></p>
                 <p></p>
                 <p></p>
@@ -109,6 +109,35 @@
                 <div class="row">
                     <div class="col-12">
                         <input type="submit" onclick="return validateForm4()" value="Enter"
+                               class="btn btn-primary btn-lg px-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form id="form5" autocomplete="off" method="post" action="/admin/delete">
+        <div class="site-section">
+            <div class="container">
+                <h3>Delete: </h3>
+                <p></p>
+                <p></p>
+                <p></p>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="email">Emails</label>
+                        <select id="email" name="email" class="form-control form-control-lg">
+                            <#list userDtos as userDto>
+                                <option value="${userDto.email}">${userDto.email}</option>
+                            <#else>
+                                <p>No users found to display</p>
+                            </#list>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="submit" value="Delete"
                                class="btn btn-primary btn-lg px-5">
                     </div>
                 </div>

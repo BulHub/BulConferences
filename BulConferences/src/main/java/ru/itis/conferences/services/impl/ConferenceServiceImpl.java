@@ -3,13 +3,12 @@ package ru.itis.conferences.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.conferences.dto.ConferenceDto;
-import ru.itis.conferences.utils.UserSecurity;
 import ru.itis.conferences.models.Conference;
 import ru.itis.conferences.models.User;
 import ru.itis.conferences.repositories.ConferenceRepository;
 import ru.itis.conferences.services.ConferenceService;
+import ru.itis.conferences.utils.UserSecurity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,12 +18,10 @@ import java.util.stream.Collectors;
 public class ConferenceServiceImpl implements ConferenceService {
 
     private final ConferenceRepository conferenceRepository;
-    private final ru.itis.conferences.services.UserService userService;
     private final UserSecurity userSecurity;
 
     @Autowired
     public ConferenceServiceImpl(ConferenceRepository conferenceRepository, ru.itis.conferences.services.UserService userService, UserSecurity userSecurity) {
-        this.userService = userService;
         this.conferenceRepository = conferenceRepository;
         this.userSecurity = userSecurity;
     }

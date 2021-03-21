@@ -22,7 +22,13 @@ public interface UserService {
 
     User save(User user);
 
+    void delete(User user);
+
+    boolean createNewUserWithRole(User user, String role);
+
     boolean confirm(String token);
 
     void changePassword(PasswordDto passwordDto, ModelMap model, HttpSession session);
+
+    boolean updateRole(String email, String role);
 }

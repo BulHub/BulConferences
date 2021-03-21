@@ -18,6 +18,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "roles")
 @Builder
 @Entity
 @Table(name = "users")

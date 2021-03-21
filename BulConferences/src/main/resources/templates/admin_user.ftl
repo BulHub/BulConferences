@@ -39,8 +39,11 @@
             <div
                     class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav links">
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/admin/users">Users </a>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="${rc.getContextPath()}/admin/users">Users </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="${rc.getContextPath()}/admin/creature">Creature </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
