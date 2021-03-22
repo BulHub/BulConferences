@@ -43,7 +43,10 @@
                         <a class="nav-link" href="${rc.getContextPath()}/admin/users">Users </a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="${rc.getContextPath()}/admin/creature">Creature </a>
+                        <a class="nav-link" href="${rc.getContextPath()}/admin/creature">Creature users </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="${rc.getContextPath()}/admin/update">Update users </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
@@ -51,7 +54,9 @@
                                             aria-expanded="false"
                                             href="#"> <img src="${rc.getContextPath()}/img/avatar.jpg"
                                                            class="dropdown-image">&nbsp;
-                            ${nickname}
+                            <#if nickname??>
+                                ${nickname}
+                            </#if>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
