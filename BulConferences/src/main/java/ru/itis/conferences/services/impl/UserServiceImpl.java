@@ -139,4 +139,22 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
+
+    @Override
+    public boolean updateUser(User user){
+        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        if (!optionalUser.isPresent()){
+            return false;
+        }else{
+            User oldUSer = optionalUser.get();
+            if (!user.getNickname().equals("")){
+                oldUSer.setNickname(user.getNickname());
+            }
+            if (!user.getPassword().equals("")){
+                oldUSer.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
+            userRepository.save(oldUSer);
+            return true;
+        }
+    }
 }
