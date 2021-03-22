@@ -48,7 +48,7 @@
     </div>
 
     <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4"
-         style="background-image: url('./images/bg_1.jpg')">
+         style="background-image: url('/images/bg_1.jpg')">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-lg-7">
@@ -88,7 +88,7 @@
         </div>
     </form>
 
-    <div class="section-bg style-1" style="background-image: url('./images/hero_1.jpg');">
+    <div class="section-bg style-1" style="background-image: url('/images/hero_1.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
