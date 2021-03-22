@@ -1,0 +1,15 @@
+GET http://localhost:8080/rest/user/admin@gmail.com
+###
+GET http://localhost:8080/rest/users
+###
+GET http://localhost:8080/rest/user/anyEmail
+###
+GET http://localhost:8080/rest/report/Report_1
+###
+GET http://localhost:8080/rest/report/anyName
+###
+GET http://localhost:8080/rest/reports
+###
+GET http://localhost:8080/rest/findByAudience/666
+###
+GET http://localhost:8080/rest/findAllReportsSortedAudience
