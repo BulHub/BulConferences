@@ -63,8 +63,10 @@
                     <li class="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
                                             aria-expanded="false"
                                             href="#"> <img src="${rc.getContextPath()}/img/avatar.jpg"
-                                                           class="dropdown-image">&nbsp;
+                                                           class="dropdown-image">
+                            <#if nickname??>
                             ${nickname}
+                            </#if>&nbsp;
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
