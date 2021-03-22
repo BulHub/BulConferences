@@ -48,7 +48,9 @@
                                             aria-expanded="false"
                                             href="#"> <img src="${rc.getContextPath()}/img/avatar.jpg"
                                                            class="dropdown-image">&nbsp;
-                            ${nickname}
+                            <#if nickname??>
+                                ${nickname}
+                            </#if>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
