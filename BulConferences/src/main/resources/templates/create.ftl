@@ -46,6 +46,9 @@
                                                                 href="${rc.getContextPath()}/create/conference">Create
                             conference</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="${rc.getContextPath()}/update/report">Update
+                            report</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/delete/report">Delete
                             report</a></li>
                 </ul>
