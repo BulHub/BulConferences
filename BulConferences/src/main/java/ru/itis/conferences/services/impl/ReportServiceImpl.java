@@ -2,8 +2,8 @@ package ru.itis.conferences.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 import ru.itis.conferences.models.Audience;
+import ru.itis.conferences.models.Conference;
 import ru.itis.conferences.models.Report;
 import ru.itis.conferences.repositories.ReportRepository;
 import ru.itis.conferences.services.AudienceService;
@@ -54,23 +54,32 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public void fillingTheEntity(Report report, String conference,
-                                 String audience, String start_date,
-                                 String finish_date){
-        report.setConference(conferenceService.find(conference).get());
-        report.setAudience(audienceService.findByNumber(Long.parseLong(audience)).get());
-        report.setStartDate(LocalDateTime.parse(start_date));
-        report.setFinishDate(LocalDateTime.parse(finish_date));
-    }
-
-    @Override
-    public StringBuilder checkingDataForCreateReports(Report report, ModelMap map){
+    public StringBuilder checkingDataForCreateReportsAddFillingTheEntity(Report report, String conference,
+                                                      String audience, String start_date,
+                                                      String finish_date){
         StringBuilder builder = new StringBuilder();
-        if (report.getStartDate() == null) builder.append("The start date of the report cannot be empty ");
-        if (report.getFinishDate() == null) builder.append("The end date of the report cannot be empty ");
+        if (start_date.equals("")) builder.append("The start date of the report cannot be empty.  ");
+        else report.setStartDate(LocalDateTime.parse(start_date));
+        if (finish_date.equals("")) builder.append("The end date of the report cannot be empty. ");
+        else report.setFinishDate(LocalDateTime.parse(finish_date));
+        if (builder.length() == 0){
+            if (!LocalDateTime.parse(finish_date).isAfter(LocalDateTime.parse(start_date))){
+                builder.append("The start date cannot be more than the end date of the conference. ");
+            }
+        }
         Optional<Report> optionalReport = reportRepository.findByName(report.getName());
-        if (optionalReport.isPresent()){
-            builder.append("This conference name is already taken ");
+        if (optionalReport.isPresent()) builder.append("This conference name is already taken. ");
+        Optional<Conference> optionalConference = conferenceService.find(conference);
+        if (!optionalConference.isPresent()){
+            builder.append("The conference to which this report belongs is not completed. ");
+        }else{
+            report.setConference(optionalConference.get());
+        }
+        Optional<Audience> optionalAudience = audienceService.findByNumber(Long.parseLong(audience));
+        if (!optionalAudience.isPresent()) {
+            builder.append("The audience to which this report refers is not filled. ");
+        }else{
+            report.setAudience(optionalAudience.get());
         }
         return builder;
     }
@@ -82,8 +91,10 @@ public class ReportServiceImpl implements ReportService {
             Audience audience = optionalAudience.get();
             List<Report> reports = findByAudience(audience);
             for (Report report: reports) {
-                if(!(start.isAfter(report.getStartDate()) && finish.isAfter(report.getFinishDate()))
-                && !(start.isBefore(report.getStartDate()) && finish.isBefore(report.getFinishDate()))){
+                if(
+                        !((start.isBefore(report.getStartDate()) && finish.isBefore(report.getStartDate())
+                        ) || (finish.isAfter(report.getFinishDate()) && start.isAfter(report.getFinishDate())))
+                ){
                     return Optional.of(report);
                 }
             }
