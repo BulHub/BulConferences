@@ -35,6 +35,7 @@ public class ReportDto {
         return ReportDto.builder()
                 .name(report.getName())
                 .conferenceDto(ConferenceDto.fromConference(report.getConference()))
+                .audience(report.getAudience())
                 .startDate(report.getStartDate())
                 .finishDate(report.getFinishDate())
                 .build();
