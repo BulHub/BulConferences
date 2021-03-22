@@ -31,4 +31,6 @@ public interface UserService {
     void changePassword(PasswordDto passwordDto, ModelMap model, HttpSession session);
 
     boolean updateRole(String email, String role);
+
+    boolean updateUser(User user);
 }
