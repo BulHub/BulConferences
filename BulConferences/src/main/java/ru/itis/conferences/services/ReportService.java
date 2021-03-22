@@ -21,11 +21,9 @@ public interface ReportService {
 
     List<Report> findByAudience(Audience audience);
 
-    void fillingTheEntity(Report report, String conference,
-                          String audience, String start_date,
-                          String finish_date);
-
-    StringBuilder checkingDataForCreateReports(Report report, ModelMap map);
+    StringBuilder checkingDataForCreateReportsAddFillingTheEntity(Report report, String conference,
+                                               String audience, String start_date,
+                                               String finish_date);
 
     Optional<Report> areTheseDatesBusyInTheAudience(LocalDateTime start,
                                                     LocalDateTime finish,
