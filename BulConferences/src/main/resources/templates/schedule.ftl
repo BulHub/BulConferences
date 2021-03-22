@@ -69,30 +69,34 @@
         </div>
     </div>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Conference</th>
-            <th scope="col">Audience</th>
-            <th scope="col">Start date</th>
-            <th scope="col">Finish date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <#list schedules as report>
-        <tr>
-            <td>${report.id}</td>
-            <td>${report.name}</td>
-            <td>${report.conference.name}</td>
-            <td>${report.audience.number}</td>
-            <td>${report.startDate}</td>
-            <td>${report.finishDate}</td>
-        </tr>
-        </#list>
-        </tbody>
-    </table>
+    <div class="site-section">
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Conference</th>
+                    <th scope="col">Audience</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">Finish date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <#list schedules as report>
+                    <tr>
+                        <td>${report.id}</td>
+                        <td>${report.name}</td>
+                        <td>${report.conference.name}</td>
+                        <td>${report.audience.number}</td>
+                        <td>${report.startDate}</td>
+                        <td>${report.finishDate}</td>
+                    </tr>
+                </#list>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <div class="section-bg style-1" style="background-image: url('./images/hero_1.jpg');">
         <div class="container">
