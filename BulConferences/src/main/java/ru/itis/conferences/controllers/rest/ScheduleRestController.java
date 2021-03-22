@@ -28,14 +28,6 @@ public class ScheduleRestController {
         this.reportService = reportService;
     }
 
-    @GetMapping("/rest/reports")
-    public ResponseEntity<List<ReportDto>> getAllReports(){
-        return new ResponseEntity<>(reportService.findAll()
-                .stream().map(ReportDto::fromReport)
-                .collect(Collectors.toList()),
-                HttpStatus.OK);
-    }
-
     @GetMapping("/rest/findByAudience/{number}")
     public ResponseEntity<List<ReportDto>> getReportsByAudience(@PathVariable("number") String number) {
         Optional<Audience> optionalAudience = audienceService.findByNumber(Long.parseLong(number));
