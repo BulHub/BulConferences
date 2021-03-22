@@ -76,4 +76,23 @@ public class AdminController {
         }
         return "redirect:/admin/users";
     }
+
+    @GetMapping("/admin/update")
+    public String getPageForUpdateUser(ModelMap map){
+        List<String> emails = userService.findByRoles(roleService.findByName("ROLE_LISTENER").get())
+                .stream().map(User::getEmail)
+                .collect(Collectors.toList());
+        map.put("emails", emails);
+        return "update-user";
+    }
+
+    @PostMapping("/admin/update")
+    public String updateUser(User user, RedirectAttributes redirectAttributes){
+        if (userService.updateUser(user)){
+            Attributes.addSuccessAttributesWithFlash(redirectAttributes, "Success");
+        }else{
+            Attributes.addErrorAttributesWithFlash(redirectAttributes, "Error!");
+        }
+        return "redirect:/admin/update";
+    }
 }
