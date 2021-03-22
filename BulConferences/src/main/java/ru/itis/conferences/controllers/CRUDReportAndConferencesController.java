@@ -1,6 +1,5 @@
 package ru.itis.conferences.controllers;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -45,6 +44,7 @@ public class CRUDReportAndConferencesController {
     }
 
     @PostMapping("/create/report")
+    //TODO: Исправить @ReguestParam -> <option value="${audience.id}">${audience.number}</option>
     public String createReports(Report report,
                                 @RequestParam("conference1") String conference,
                                 @RequestParam("audience1") String audience,
@@ -72,7 +72,7 @@ public class CRUDReportAndConferencesController {
     }
 
     @GetMapping("/create/conference")
-    public String getPageForCreateConferences(){
+    public String getPageForCreateConferences() {
         return "create-conference";
     }
 
@@ -82,14 +82,14 @@ public class CRUDReportAndConferencesController {
         if (!optionalConference.isPresent()) {
             Attributes.addSuccessAttributes(map, "Success!");
             conferenceService.add(conference);
-        }else {
+        } else {
             Attributes.addErrorAttributes(map, "A conference with the same name already exists!");
         }
         return "create-conference";
     }
 
     @GetMapping("/delete/report")
-    public String getPageForDeleteReport(ModelMap map){
+    public String getPageForDeleteReport(ModelMap map) {
         List<String> names = reportService.findAll()
                 .stream().map(Report::getName)
                 .collect(Collectors.toList());
@@ -99,14 +99,51 @@ public class CRUDReportAndConferencesController {
 
     @PostMapping("/delete/report")
     public String deleteReport(RedirectAttributes redirectAttributes,
-                               @RequestParam("name") String name){
+                               @RequestParam("name") String name) {
         Optional<Report> report = reportService.find(name);
-        if (report.isPresent()){
+        if (report.isPresent()) {
             reportService.delete(report.get());
             Attributes.addSuccessAttributesWithFlash(redirectAttributes, "Success");
-        }else{
+        } else {
             Attributes.addErrorAttributesWithFlash(redirectAttributes, "Error!");
         }
         return "redirect:/delete/report";
+    }
+
+    @GetMapping("/update/report")
+    public String getPageForUpdateReport(Map<String, Object> model) {
+        model.put("audiences", audienceService.findAll());
+        model.put("conferences", conferenceService.findAll());
+        List<String> names = reportService.findAll().stream().map(Report::getName).collect(Collectors.toList());
+        model.put("names", names);
+        return "update-report";
+    }
+
+    @PostMapping("/update/report")
+    public String updateReport(Report report,
+                               @RequestParam("start_date1") String start_date,
+                               @RequestParam("finish_date1") String finish_date,
+                               RedirectAttributes redirectAttributes) {
+        if (!start_date.equals("") && !finish_date.equals("")) {
+            LocalDateTime start = LocalDateTime.parse(start_date);
+            LocalDateTime finish = LocalDateTime.parse(finish_date);
+            if (finish.isAfter(start)) {
+                Attributes.addErrorAttributesWithFlash(redirectAttributes,
+                        "The start date cannot be more than the end date of the conference. ");
+            } else {
+                //FIXME: Дублируемый код
+                Optional<Report> optionalReport = reportService.areTheseDatesBusyInTheAudience(start,
+                        finish, report.getAudience().getNumber());
+                if (optionalReport.isPresent()) {
+                    Attributes.addErrorAttributesWithFlash(redirectAttributes, "At this time, a report is already being held in this audience!");
+                } else {
+                    report.setStartDate(start);
+                    report.setFinishDate(finish);
+                    Attributes.addSuccessAttributesWithFlash(redirectAttributes, "Success");
+                }
+            }
+        }
+        reportService.add(report);
+        return "redirect:/update-report";
     }
 }
