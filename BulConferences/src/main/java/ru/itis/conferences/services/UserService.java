@@ -28,6 +28,8 @@ public interface UserService {
 
     boolean confirm(String token);
 
+    List<User> findAll();
+
     void changePassword(PasswordDto passwordDto, ModelMap model, HttpSession session);
 
     boolean updateRole(String email, String role);
