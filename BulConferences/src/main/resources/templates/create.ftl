@@ -45,13 +45,18 @@
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/create/conference">Create
                             conference</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="${rc.getContextPath()}/delete/report">Delete
+                            report</a></li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
                                             aria-expanded="false"
                                             href="#"> <img src="${rc.getContextPath()}/img/avatar.jpg"
                                                            class="dropdown-image">&nbsp;
-                            ${nickname}
+                            <#if nickname??>
+                                ${nickname}
+                            </#if>&nbsp;
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
                                                                                       role="presentation"
