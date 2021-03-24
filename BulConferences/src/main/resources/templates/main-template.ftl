@@ -65,7 +65,7 @@
                                             href="#"> <img src="${rc.getContextPath()}/img/avatar.jpg"
                                                            class="dropdown-image">
                             <#if nickname??>
-                            ${nickname}
+                                ${nickname}
                             </#if>&nbsp;
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item"
@@ -76,9 +76,11 @@
                                    role="presentation"
                                    href="${rc.getContextPath()}/create/report">Presenter page </a>
                             </@security.authorize>
-                            <a class="dropdown-item"
-                               role="presentation"
-                               href="${rc.getContextPath()}/admin/users">Admin page </a>
+                            <@security.authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                                <a class="dropdown-item"
+                                   role="presentation"
+                                   href="${rc.getContextPath()}/admin/users">Admin page </a>
+                            </@security.authorize>
                             <a class="dropdown-item"
                                role="presentation"
                                href="${rc.getContextPath()}/logout">Logout </a>
