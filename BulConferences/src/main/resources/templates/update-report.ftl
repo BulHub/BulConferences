@@ -100,7 +100,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <input type="submit" onclick="return validateForm4()" value="Create"
+                        <input type="submit" onclick="return validateForm4()" value="Update"
                                class="btn btn-primary btn-lg px-5">
                     </div>
                 </div>

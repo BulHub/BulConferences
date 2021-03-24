@@ -124,26 +124,37 @@ public class CRUDReportAndConferencesController {
                                @RequestParam("start_date1") String start_date,
                                @RequestParam("finish_date1") String finish_date,
                                RedirectAttributes redirectAttributes) {
-        if (!start_date.equals("") && !finish_date.equals("")) {
-            LocalDateTime start = LocalDateTime.parse(start_date);
-            LocalDateTime finish = LocalDateTime.parse(finish_date);
-            if (finish.isAfter(start)) {
-                Attributes.addErrorAttributesWithFlash(redirectAttributes,
-                        "The start date cannot be more than the end date of the conference. ");
-            } else {
-                //FIXME: Дублируемый код
-                Optional<Report> optionalReport = reportService.areTheseDatesBusyInTheAudience(start,
-                        finish, report.getAudience().getNumber());
-                if (optionalReport.isPresent()) {
-                    Attributes.addErrorAttributesWithFlash(redirectAttributes, "At this time, a report is already being held in this audience!");
+        Optional<Report> reportOptional = reportService.find(report.getName());
+        Report oldReport;
+        if (reportOptional.isPresent()) {
+            oldReport = reportOptional.get();
+            if (report.getAudience() != null){
+                oldReport.setAudience(report.getAudience());
+            }
+            if (report.getConference() != null){
+                oldReport.setConference(report.getConference());
+            }
+            if (!start_date.equals("") && !finish_date.equals("")) {
+                LocalDateTime start = LocalDateTime.parse(start_date);
+                LocalDateTime finish = LocalDateTime.parse(finish_date);
+                if (!finish.isAfter(start)) {
+                    Attributes.addErrorAttributesWithFlash(redirectAttributes,
+                            "The start date cannot be more than the end date of the conference. ");
                 } else {
-                    report.setStartDate(start);
-                    report.setFinishDate(finish);
-                    Attributes.addSuccessAttributesWithFlash(redirectAttributes, "Success");
+                    //FIXME: Дублируемый код
+                    Optional<Report> optionalReport = reportService.areTheseDatesBusyInTheAudience(start,
+                            finish, oldReport.getAudience().getNumber());
+                    if (optionalReport.isPresent()) {
+                        Attributes.addErrorAttributesWithFlash(redirectAttributes, "At this time, a report is already being held in this audience!");
+                    } else {
+                        oldReport.setStartDate(start);
+                        oldReport.setFinishDate(finish);
+                        Attributes.addSuccessAttributesWithFlash(redirectAttributes, "Success");
+                    }
                 }
             }
+            reportService.add(oldReport);
         }
-        reportService.add(report);
-        return "redirect:/update-report";
+        return "redirect:/update/report";
     }
 }
