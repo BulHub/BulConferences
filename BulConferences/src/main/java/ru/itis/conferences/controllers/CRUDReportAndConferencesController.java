@@ -44,31 +44,27 @@ public class CRUDReportAndConferencesController {
     }
 
     @PostMapping("/create/report")
-    //TODO: Исправить @ReguestParam -> <option value="${audience.id}">${audience.number}</option>
     public String createReports(Report report,
-                                @RequestParam("conference1") String conference,
-                                @RequestParam("audience1") String audience,
                                 @RequestParam("start_date1") String start_date,
                                 @RequestParam("finish_date1") String finish_date,
-                                ModelMap map) {
-        StringBuilder errors = reportService.checkingDataForCreateReportsAddFillingTheEntity(report, conference,
-                audience, start_date, finish_date);
+                                RedirectAttributes redirectAttributes) {
+        StringBuilder errors = reportService.checkingDataForCreateReportsAddFillingTheEntity(report,
+                start_date, finish_date);
         if (errors.length() == 0) {
             Optional<Report> optionalReport = reportService.areTheseDatesBusyInTheAudience(LocalDateTime.parse(start_date),
                     LocalDateTime.parse(finish_date), report.getAudience().getNumber());
             if (optionalReport.isPresent()) {
-                Attributes.addErrorAttributes(map, "At this time, a report is already being held in this audience!");
+                Attributes.addErrorAttributesWithFlash(redirectAttributes,
+                        "At this time, a report is already being held in this audience!");
             } else {
                 reportService.add(report);
-                Attributes.addSuccessAttributes(map, "Success");
+                Attributes.addSuccessAttributesWithFlash(redirectAttributes,
+                        "Success");
             }
         } else {
-            Attributes.addErrorAttributes(map, errors.toString());
+            Attributes.addErrorAttributesWithFlash(redirectAttributes, errors.toString());
         }
-        map.put("conferences", conferenceService.findAll());
-        map.put("audiences", audienceService.findAll());
-        System.out.println(errors);
-        return "create-report";
+        return "redirect:/create/report";
     }
 
     @GetMapping("/create/conference")
@@ -125,14 +121,13 @@ public class CRUDReportAndConferencesController {
                                @RequestParam("finish_date1") String finish_date,
                                RedirectAttributes redirectAttributes) {
         Optional<Report> reportOptional = reportService.find(report.getName());
-        Report oldReport;
         if (reportOptional.isPresent()) {
-            oldReport = reportOptional.get();
+            Report newReport = reportOptional.get();
             if (report.getAudience() != null){
-                oldReport.setAudience(report.getAudience());
+                newReport.setAudience(report.getAudience());
             }
             if (report.getConference() != null){
-                oldReport.setConference(report.getConference());
+                newReport.setConference(report.getConference());
             }
             if (!start_date.equals("") && !finish_date.equals("")) {
                 LocalDateTime start = LocalDateTime.parse(start_date);
@@ -141,19 +136,18 @@ public class CRUDReportAndConferencesController {
                     Attributes.addErrorAttributesWithFlash(redirectAttributes,
                             "The start date cannot be more than the end date of the conference. ");
                 } else {
-                    //FIXME: Дублируемый код
                     Optional<Report> optionalReport = reportService.areTheseDatesBusyInTheAudience(start,
-                            finish, oldReport.getAudience().getNumber());
+                            finish, newReport.getAudience().getNumber());
                     if (optionalReport.isPresent()) {
                         Attributes.addErrorAttributesWithFlash(redirectAttributes, "At this time, a report is already being held in this audience!");
                     } else {
-                        oldReport.setStartDate(start);
-                        oldReport.setFinishDate(finish);
+                        newReport.setStartDate(start);
+                        newReport.setFinishDate(finish);
                         Attributes.addSuccessAttributesWithFlash(redirectAttributes, "Success");
                     }
                 }
             }
-            reportService.add(oldReport);
+            reportService.add(newReport);
         }
         return "redirect:/update/report";
     }

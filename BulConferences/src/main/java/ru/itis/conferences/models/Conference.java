@@ -10,6 +10,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = "users")
 @Table(name = "conference")
 @EqualsAndHashCode(exclude = "users")
 public class Conference {

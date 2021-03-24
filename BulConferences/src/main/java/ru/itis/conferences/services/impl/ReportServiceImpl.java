@@ -54,9 +54,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public StringBuilder checkingDataForCreateReportsAddFillingTheEntity(Report report, String conference,
-                                                      String audience, String start_date,
-                                                      String finish_date){
+    public StringBuilder checkingDataForCreateReportsAddFillingTheEntity(Report report,
+                                                                         String start_date, String finish_date){
         StringBuilder builder = new StringBuilder();
         if (start_date.equals("")) builder.append("The start date of the report cannot be empty.  ");
         else report.setStartDate(LocalDateTime.parse(start_date));
@@ -69,18 +68,6 @@ public class ReportServiceImpl implements ReportService {
         }
         Optional<Report> optionalReport = reportRepository.findByName(report.getName());
         if (optionalReport.isPresent()) builder.append("This conference name is already taken. ");
-        Optional<Conference> optionalConference = conferenceService.find(conference);
-        if (!optionalConference.isPresent()){
-            builder.append("The conference to which this report belongs is not completed. ");
-        }else{
-            report.setConference(optionalConference.get());
-        }
-        Optional<Audience> optionalAudience = audienceService.findByNumber(Long.parseLong(audience));
-        if (!optionalAudience.isPresent()) {
-            builder.append("The audience to which this report refers is not filled. ");
-        }else{
-            report.setAudience(optionalAudience.get());
-        }
         return builder;
     }
 
@@ -100,5 +87,15 @@ public class ReportServiceImpl implements ReportService {
             }
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void update(Report oldReport, Report newReport) {
+        if (newReport.getAudience() != null){
+            oldReport.setAudience(newReport.getAudience());
+        }
+        if (newReport.getConference() != null){
+            oldReport.setConference(newReport.getConference());
+        }
     }
 }

@@ -69,17 +69,17 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="conference">Conference</label>
-                        <select id="conference1" name="conference1" class="form-control form-control-lg">
+                        <select id="conference" name="conference" class="form-control form-control-lg">
                             <#list conferences as conference>
-                                <option value="${conference.name}">${conference.name}</option>
+                                <option value="${conference.id}">${conference.name}</option>
                             </#list>
                         </select>
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="audience">Audience</label>
-                        <select id="audience1" name="audience1" class="form-control form-control-lg">
+                        <select id="audience" name="audience" class="form-control form-control-lg">
                             <#list audiences as audience>
-                                <option value="${audience.number}">${audience.number}</option>
+                                <option value="${audience.id}">${audience.number}</option>
                             </#list>
                         </select>
                     </div>

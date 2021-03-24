@@ -21,11 +21,12 @@ public interface ReportService {
 
     List<Report> findByAudience(Audience audience);
 
-    StringBuilder checkingDataForCreateReportsAddFillingTheEntity(Report report, String conference,
-                                               String audience, String start_date,
+    StringBuilder checkingDataForCreateReportsAddFillingTheEntity(Report report, String start_date,
                                                String finish_date);
 
     Optional<Report> areTheseDatesBusyInTheAudience(LocalDateTime start,
                                                     LocalDateTime finish,
                                                     Long number);
+
+    void update(Report oldReport, Report newReport);
 }
