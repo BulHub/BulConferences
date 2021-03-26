@@ -50,22 +50,21 @@ public class CRUDReportAndConferencesController {
                                 RedirectAttributes redirectAttributes) {
         StringBuilder errors = reportService.checkingDataForCreateReportsAddFillingTheEntity(report,
                 start_date, finish_date);
-        if (errors.length() == 0) {
-            Optional<Report> optionalReport = reportService.areTheseDatesBusyInTheAudience(LocalDateTime.parse(start_date),
-                    LocalDateTime.parse(finish_date), report.getAudience().getNumber());
-            if (optionalReport.isPresent()) {
-                Attributes.addErrorAttributesWithFlash(redirectAttributes,
-                        "At this time, a report is already being held in this audience!");
-            } else {
-                reportService.add(report);
-                Attributes.addSuccessAttributesWithFlash(redirectAttributes,
-                        "Success");
-            }
-        } else {
+        Optional<Report> optionalReport = reportService.areTheseDatesBusyInTheAudience(LocalDateTime.parse(start_date),
+                LocalDateTime.parse(finish_date), report.getAudience().getNumber());
+        if (optionalReport.isPresent()) {
+            errors.append("At this time, a report is already being held in this audience!");
+        }
+        if (errors.length() == 0){
+            reportService.add(report);
+            Attributes.addSuccessAttributesWithFlash(redirectAttributes,
+                    "Success");
+        }else{
             Attributes.addErrorAttributesWithFlash(redirectAttributes, errors.toString());
         }
-        return "redirect:/create/report";
+        return"redirect:/create/report";
     }
+
 
     @GetMapping("/create/conference")
     public String getPageForCreateConferences() {
@@ -123,10 +122,10 @@ public class CRUDReportAndConferencesController {
         Optional<Report> reportOptional = reportService.find(report.getName());
         if (reportOptional.isPresent()) {
             Report newReport = reportOptional.get();
-            if (report.getAudience() != null){
+            if (report.getAudience() != null) {
                 newReport.setAudience(report.getAudience());
             }
-            if (report.getConference() != null){
+            if (report.getConference() != null) {
                 newReport.setConference(report.getConference());
             }
             if (!start_date.equals("") && !finish_date.equals("")) {
