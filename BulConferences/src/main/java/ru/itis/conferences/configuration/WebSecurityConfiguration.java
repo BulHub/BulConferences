@@ -27,13 +27,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /** The method is the same as in the ancestor */
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
     /** Method for configuring different paths */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
